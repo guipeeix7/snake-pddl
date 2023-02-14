@@ -17,7 +17,7 @@ def readInputsFromFile():
     lines = []
     with open('./pddlConvertedOut/cmds.txt', 'r') as f:
         last_line = f.readlines()[-1]
-
+    f.close()
     return last_line.split(',')[0:-1]
 
 # Macro definition for snake movement.

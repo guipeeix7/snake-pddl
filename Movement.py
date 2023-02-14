@@ -4,32 +4,40 @@ from time import sleep
 
 class Movement:
     def interpretMovement(self, instance):
-        list_of_input_files = glob.glob('./out/*') # * means all if need specific format then *.csv
+        # list_of_input_files = glob.glob('./out/*') # * means all if need specific format then *.csv
         
         lines = []
 
         with open('./out/out'+str(instance)+'.txt', 'r') as f:
             lines = f.readlines() 
-        print('./out/out'+str(instance)+'.txt')
-
+        f.close()
+        # print('./out/out'+str(instance)+'.txt')
 
         
         instructionsArray = []
 
         lineCounter = 0
-        for line in lines:
-            if(line[0] == str(lineCounter)):
-                xy = re.findall("([0-9]+-[0-9]+)", line)
-                x,y = self.convertToCardinals(xy[0], xy[1])
-                positionMapped = self.convertCardinalToPosition(x,y)
-                instructionsArray.append(positionMapped)
-                lineCounter+=1
-                print(xy)
-                print(xy[0], xy[1])
         
-        print(instructionsArray)
+        for line in lines:
+            # print(line, end = "")
+            # print(line[0]+"<-- -->"+ "0"+str(lineCounter))
+            # if(line[0] == str(lineCounter) or line[0] == "0"+str(lineCounter) ):
+                try:
+                    xy = re.findall("([0-9]+-[0-9]+)", line)
+                    x,y = self.convertToCardinals(xy[0], xy[1])
+                    positionMapped = self.convertCardinalToPosition(x,y)
+                    instructionsArray.append(positionMapped)
+                    lineCounter+=1
+                except:
+                    pass
+                # print("lineCounter = "+str(lineCounter))
+                # print(xy)
+                # print(xy[0], xy[1])
+        if lineCounter == 0:
+            print("no plan founded")
+            exit()
+        # print(instructionsArray)
 
-        sleep(1)
         file_object = open('./pddlConvertedOut/cmds'+str(instance)+'.txt', 'w')
 
         for cmd in instructionsArray:

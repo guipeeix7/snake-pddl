@@ -50,6 +50,7 @@ def readInputsFromFile(count):
     lines = []
     with open('./pddlConvertedOut/cmds'+str(count)+'.txt', 'r') as f:
         last_line = f.readlines()[-1]
+    f.close()
     return last_line.split(',')[0:-1]
 
 prevpos = apple_pos
