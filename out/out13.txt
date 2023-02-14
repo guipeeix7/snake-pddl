@@ -1,0 +1,41 @@
+
+parsing domain file "snakeDomain.pddl" done successfully
+parsing problem file "conv13.pddl" done successfully
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+
+encoding problem done successfully (13089 ops, 215 facts)
+* starting A*
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+* A* succeeded
+
+found plan as follows:
+
+00: (move pos5-0 pos5-1 pos0-0 pos2-5) [1]
+01: (move pos5-1 pos5-2 pos2-5 pos1-5) [1]
+02: (move pos5-2 pos4-2 pos1-5 pos1-4) [1]
+03: (move pos4-2 pos4-3 pos1-4 pos1-3) [1]
+04: (move pos4-3 pos4-4 pos1-3 pos2-3) [1]
+05: (move pos4-4 pos3-4 pos2-3 pos3-3) [1]
+06: (move pos3-4 pos2-4 pos3-3 pos3-2) [1]
+07: (move pos2-4 pos2-3 pos3-2 pos2-2) [1]
+08: (move pos2-3 pos1-3 pos2-2 pos1-2) [1]
+09: (move pos1-3 pos0-3 pos1-2 pos1-1) [1]
+10: (move pos0-3 pos0-2 pos1-1 pos2-1) [1]
+11: (move pos0-2 pos0-1 pos2-1 pos3-1) [1]
+12: (move pos0-1 pos1-1 pos3-1 pos4-1) [1]
+13: (move-and-eat-spawn pos1-1 pos1-0) [1]
+
+plan total cost: 14.00
+
+
+time spent:       0.04 seconds parsing 
+                  1.32 seconds encoding 
+                  0.18 seconds searching
+                  1.54 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total
+
+
