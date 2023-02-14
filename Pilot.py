@@ -15,7 +15,7 @@ class Pilot:
     def generator(self, snakePos, applePos):
         matrixSize = 6
 
-        file = open('./inputs/conv'+str(self.instances)+'.pddl', 'w') # Open a file in append mode
+        file = open('./inputs/conv'+str(self.instances)+'.pddl', 'w') 
 
         file.write((f"(define (problem snake-empty-{matrixSize}x{matrixSize})\n"))
         file.write((f"(:domain snake)\n"))
@@ -30,11 +30,11 @@ class Pilot:
         appleSpawn.generateApplePosition(applePos, file)
 
         appleSpawn.eatApple(applePos, file)
-        file.close() # Close the file
+        file.close() 
 
 
     def loopLoader(self, snakePos, applePos):
-        list_of_files = glob.glob('./out/*') # * means all if need specific format then *.csv
+        list_of_files = glob.glob('./out/*') 
 
         counterFiles = 0; 
         self.generator( snakePos, applePos)

@@ -81,6 +81,4 @@
         ;isPoint is the new spawnpoint
     )
 )
-
-
 )
