@@ -1,0 +1,24 @@
+
+parsing domain file "snakeDomain.pddl" done successfully
+parsing problem file "conv25.pddl" done successfully
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+
+encoding problem done successfully (47607 ops, 391 facts)
+* starting A*
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+* A* failed
+
+no plan found
+
+
+time spent:       0.04 seconds parsing 
+                  5.97 seconds encoding 
+                  0.16 seconds searching
+                  6.17 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total
+
+

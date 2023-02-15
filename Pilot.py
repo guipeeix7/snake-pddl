@@ -8,15 +8,16 @@ import glob
 
 
 class Pilot:
+    size = 0
     instances = 0 
-    def __init__(self):
+    def __init__(self, size):
         self.instances = 0
-
+        self.size = int(size)
     def generator(self, snakePos, applePos):
-        matrixSize = 6
+        matrixSize = self.size 
 
         file = open('./inputs/conv'+str(self.instances)+'.pddl', 'w') 
-
+        # print(snakePos, applePos)
         file.write((f"(define (problem snake-empty-{matrixSize}x{matrixSize})\n"))
         file.write((f"(:domain snake)\n"))
         buildeGrid = BuildGrid(matrixSize)

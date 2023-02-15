@@ -25,7 +25,7 @@ class Movement:
                     pass
         if lineCounter == 0:
             print("no plan founded")
-            sleep(10)
+            # sleep(10)
             exit()
 
         file_object = open('./pddlConvertedOut/cmds'+str(instance)+'.txt', 'w')

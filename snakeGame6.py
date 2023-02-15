@@ -3,34 +3,40 @@ from pygame.locals import *
 from Pilot import Pilot
 from time import sleep
 import os
+import sys
 
 os.system(f"rm ./out/* && rm ./pddlConvertedOut/* && rm ./inputs/*")
 
 # # Helper functions
-def on_grid_random():
-    x = random.randint(0,5)
-    y = random.randint(0,5)
+def on_grid_random(grid):
+    x = random.randint(0,(grid/100)-1)
+    y = random.randint(0,(grid/100)-1)
     return (x * 100, y * 100)
 
 
 def collision(c1, c2):
     return (c1[0] == c2[0]) and (c1[1] == c2[1])
-
 # Macro definition for snake movement.
 UP = 0
 RIGHT = 1
 DOWN = 2
 LEFT = 3
 
+SnakeSize = sys.argv[1]
+
+display_max = int(int(SnakeSize)*100)
+
 pygame.init()
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((display_max, display_max))
 pygame.display.set_caption('Snake')
 
 snake = [(100, 100), (200, 100), (300,100)]
-snake_skin = pygame.Surface((100,100))
+snake_skin = pygame.Surface((98,98))
 snake_skin.fill((255,165,0)) #White
+snake_head = pygame.Surface((100,100))
+snake_head.fill((250,10,15))
 
-apple_pos = on_grid_random()
+apple_pos = on_grid_random(display_max)
 apple = pygame.Surface((100,100))
 apple.fill((124,252,0))
 instance = 0
@@ -41,7 +47,7 @@ clock = pygame.time.Clock()
 
 font = pygame.font.Font('freesansbold.ttf', 18)
 score = 0
-pilot = Pilot()
+pilot = Pilot(SnakeSize)
 game_over = False
 instance = pilot.loopLoader(snake, apple_pos)-1
     
@@ -70,7 +76,7 @@ while not game_over:
             fora = False
             while not fora:       
                 dentro = False
-                apple_pos = on_grid_random()
+                apple_pos = on_grid_random(display_max)
                 for j in snake:
                     if apple_pos == j:
                         dentro = True
@@ -81,13 +87,13 @@ while not game_over:
             
             instance = pilot.loopLoader(snake, apple_pos)-1
             print(instance)
-            break 
-        
+
+            break
+
         # Check if snake collided with boundaries
-        if snake[0][0] == 600 or snake[0][1] == 600 or snake[0][0] < 0 or snake[0][1] < 0:
+        if snake[0][0] == display_max or snake[0][1] == display_max or snake[0][0] < 0 or snake[0][1] < 0:
             game_over = True
             print("Out of bounds")
-
             break
         
         # Check if the snake has hit itself
@@ -101,7 +107,7 @@ while not game_over:
         
         for i in range(len(snake) - 1, 0, -1):
             snake[i] = (snake[i-1][0], snake[i-1][1])
-        
+
         # Actually make the snake move.
         if my_direction == UP:
             snake[0] = (snake[0][0], snake[0][1] - 100)
@@ -115,16 +121,18 @@ while not game_over:
         screen.fill((0,0,0))
         screen.blit(apple, apple_pos)
         
-        for x in range(0, 600, 100): # Draw vertical lines
-            pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, 600))
-        for y in range(0, 600, 100): # Draw vertical lines
-            pygame.draw.line(screen, (40, 40, 40), (0, y), (600, y))
+        for x in range(0, display_max, 100): # Draw vertical lines
+            pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, display_max))
+        for y in range(0, display_max, 100): # Draw vertical lines
+            pygame.draw.line(screen, (40, 40, 40), (0, y), (display_max, y))
         
         score_font = font.render('Score: %s' % (score), True, (135,206,235))
         score_rect = score_font.get_rect()
         score_rect.topleft = (570 - 60, 15)
         screen.blit(score_font, score_rect)
         
+        screen.blit(snake_head,snake[0])
+        pos=1
         for pos in snake:
             screen.blit(snake_skin,pos)
 
@@ -138,6 +146,7 @@ while True:
     screen.blit(game_over_screen, game_over_rect)
     pygame.display.update()
     pygame.time.wait(500)
+    exit()
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
