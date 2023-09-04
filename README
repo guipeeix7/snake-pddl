@@ -1,5 +1,8 @@
 Para rodar o projeto em ambiente linux basta executar:
 
+![](https://github.com/guipeeix7/snake-pddl/blob/main/snake.gif)
+
+
 python3 snakeGame6.py n
 
 onde n é o tamanho da matrix exemplo:
