@@ -1,7 +1,7 @@
-Para rodar o projeto em ambiente linux basta executar:
-
+Projeto utiliza de planejador para solucionar e guiar a snake para seu objetivo. 
 ![Gif](snake.gif)
 
+Para rodar o projeto em ambiente linux basta executar:
 
 python3 snakeGame6.py n
 
